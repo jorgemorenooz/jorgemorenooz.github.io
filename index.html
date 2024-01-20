@@ -37,7 +37,7 @@
 
     <div class="preguntas pregunta3">
       <label>Fecha de nacimiento</label>
-      <input name="v3" type="date" onchange="verificarEdad()">
+      <input name="v3" type="date" onchange="verificarEdadAdulto()">
     </div>
 
     <div class="preguntas pregunta4">
@@ -129,6 +129,18 @@
       var hoy = new Date();
       var edad = hoy.getFullYear() - fechaNacimiento.getFullYear();
       if (edad > 5) {
+        noApto();
+      }
+      else{
+        mostrarPregunta4()
+      }
+    }
+
+    function verificarEdadAdulto() {
+      var fechaNacimiento = new Date(document.querySelector('input[name="v3"]').value);
+      var hoy = new Date();
+      var edad = hoy.getFullYear() - fechaNacimiento.getFullYear();
+      if (edad < 16) {
         noApto();
       }
       else{
