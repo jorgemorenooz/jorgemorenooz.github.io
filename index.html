@@ -4,193 +4,22 @@
 <head>
   <meta charset="utf-8">
   <title>Benefix</title>
+  <link rel="stylesheet" href="./assets/css/style.css">
 
-  <script src="source.js"></script>
-
-  <style>
-    .preguntas {
-      display: none;
-    }
-
-    .pregunta1 {
-        display: block;
-    }
-  </style>
+  <script src="./assets/js/source.js"></script>
 
 </head>
 
 <body>
 
-  <div id="cuestionario">
-    <div class="preguntas pregunta1">
-      <label>Esta usted cobrando alguna ayuda?</label>
-      <input name="v1" type="radio" value="true" onclick="mostrarPregunta2()">Si
-      <input name="v1" type="radio" value="false" onclick="mostrarPregunta3()">No
+  <div class="app">
+    <h1>Cuestionario Calculador</h1>
+    <div class="quiz">
+      <h2 id="question">Pregunta</h2>
+      <div id="answer-buttons"></div>
+      <button id="next-btn">Siguiente</button>
     </div>
-
-    <div class="preguntas pregunta2">
-      <label>Cobra usted alguna de estas ayudas de forma habitual?</label>
-      <input name="v2" type="radio" value="false" onclick="noApto()">Prestación por desempleo
-      <input name="v2" type="radio" value="false" onclick="noApto()">ERTE
-      <input name="v2" type="radio" value="true" onclick="mostrarPregunta3()">Ninguna
-    </div>
-
-    <div class="preguntas pregunta3">
-      <label>Fecha de nacimiento</label>
-      <input name="v3" type="date" onchange="verificarEdadAdulto()">
-    </div>
-
-    <div class="preguntas pregunta4">
-      <label>¿Estás casado/a?</label>
-      <input name="v4" type="radio" value="true" onclick="mostrarPregunta5()">Si
-      <input name="v4" type="radio" value="false" onclick="mostrarPregunta6()">No
-    </div>
-
-    <div class="preguntas pregunta5">
-      <label>Cuantos Hijos tienes:</label>
-      <input name="v5" type="number" name="hijos" min="0" max="30" onchange="preguntarEdadHijos()">
-    </div>
-
-    <div class="preguntas pregunta6">
-      <label>¿Estás trabajando y dado de alta en la seguridad social?</label>
-      <input name="v6" type="radio" value="true" onclick="mostrarPregunta7()">Si
-      <input name="v6" type="radio" value="false" onclick="noApto()">No
-    </div>
-
-    <div class="preguntas pregunta7">
-      <label>Cuantos días has cotizado en tu vida laboral</label>
-      <input name="v7" type="number" name="cotiza" min="0" onchange="verificarCotizacion()">
-    </div>
-
-    <div class="preguntas pregunta8">
-      <label>¿Cuál es tu salario bruto?</label>
-      <input name="v8" type="number" name="cotiza" min="0" onchange="calcularPrestacion()">
-    </div>
-
-    <input id="boton" type="button" onclick="procesarDatos()" value="Enviar">
-
   </div>
-
-  <p class="respuesta"></p>
-
-  <script>
-    function init() {
-      // Puedes inicializar algunas variables aquí si es necesario
-    }
-
-    function mostrarPregunta2() {
-      var v1 = document.querySelector('input[name="v1"]:checked').value;
-      if (v1 === 'true') {
-        mostrarElemento('pregunta2');
-      } else {
-        mostrarElemento('pregunta3');
-      }
-    }
-
-    function mostrarPregunta3() {
-      mostrarElemento('pregunta3');
-    }
-
-    function mostrarPregunta5() {
-      mostrarElemento('pregunta5');
-    }
-
-    function mostrarPregunta6() {
-      mostrarElemento('pregunta6');
-    }
-
-    function mostrarPregunta7() {
-      mostrarElemento('pregunta7');
-    }
-
-    function mostrarPregunta4() {
-        mostrarElemento('pregunta4');
-      }
-
-    function noApto() {
-      ocultarElemento('cuestionario');
-      mostrarRespuesta('No Apto');
-    }
-
-    function preguntarEdadHijos() {
-      var cantidadHijos = parseInt(document.querySelector('input[name="v5"]').value);
-      for (var i = 1; i <= cantidadHijos; i++) {
-        var edadHijo = prompt("Edad del hijo " + i + ":");
-        if (edadHijo > 5) {
-          noApto();
-          return;
-        }
-      }
-      mostrarElemento('pregunta6');
-    }
-
-    function verificarEdad() {
-      var fechaNacimiento = new Date(document.querySelector('input[name="v3"]').value);
-      var hoy = new Date();
-      var edad = hoy.getFullYear() - fechaNacimiento.getFullYear();
-      if (edad > 5) {
-        noApto();
-      }
-      else{
-        mostrarPregunta4()
-      }
-    }
-
-    function verificarEdadAdulto() {
-      var fechaNacimiento = new Date(document.querySelector('input[name="v3"]').value);
-      var hoy = new Date();
-      var edad = hoy.getFullYear() - fechaNacimiento.getFullYear();
-      if (edad < 16) {
-        noApto();
-      }
-      else{
-        mostrarPregunta4()
-      }
-    }
-
-    function verificarCotizacion() {
-      var edad = obtenerEdad();
-      var diasCotizados = parseInt(document.querySelector('input[name="v7"]').value);
-      if (edad < 21 || (21 < edad < 26 && diasCotizados > 180) || (edad > 26 && diasCotizados > 360)) {
-        mostrarElemento('pregunta8');
-      } else {
-        noApto();
-      }
-    }
-
-    function calcularPrestacion() {
-      var salarioBruto = parseInt(document.querySelector('input[name="v8"]').value);
-      var resultado = salarioBruto * 2.5;
-      mostrarRespuesta("Importe de la prestación / Resultado = " + resultado + " Euros");
-    }
-
-    function procesarDatos() {
-        var salarioBruto = parseInt(document.querySelector('input[name="v8"]').value);
-        var resultado = salarioBruto * 2.5;
-        mostrarRespuesta("Importe de la prestación / Resultado = " + resultado + " Euros");
-    }
-    
-
-    function mostrarElemento(elemento) {
-      document.querySelector('.preguntas.' + elemento).style.display = 'block';
-    }
-
-    function ocultarElemento(elemento) {
-      document.querySelector('#' + elemento).style.display = 'none';
-    }
-
-    function mostrarRespuesta(respuesta) {
-      document.querySelector('.respuesta').innerHTML = respuesta;
-    }
-
-    function obtenerEdad() {
-      var fechaNacimiento = new Date(document.querySelector('input[name="v3"]').value);
-      var hoy = new Date();
-      return hoy.getFullYear() - fechaNacimiento.getFullYear();
-    }
-
-    document.addEventListener("DOMContentLoaded", init);
-  </script>
 
 </body>
 
