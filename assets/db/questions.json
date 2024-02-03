@@ -1,0 +1,92 @@
+{
+    "Prestación por nacimiento y cuidado de menor": [
+        {
+            "id": "1",
+            "question": "¿Cobra alguna ayuda de manera habitual?",
+            "answers": [
+                { "text": "Si", "value": "true"},
+                { "text": "No", "value": "false"}
+            ],
+            "range": "1",
+            "parentQuestion": null
+        },
+        {
+            "id": "2",
+            "question": "Indique si recibe alguna de las ayudas siguiente:",
+            "answers": [
+                { "text": "Prestación por desempleo", "value": "true"},
+                { "text": "ERTE", "value": "true"},
+                { "text": "Ninguna de las anteriores", "value": "false"}
+            ],
+            "range": "2",
+            "parentQuestion": "1"
+        },
+        {
+            "id": "3",
+            "question": "Indique su fecha de nacimiento:",
+            "answers": [
+                { "text": "Fecha", "value": "true"}
+            ],
+            "range": "1",
+            "parentQuestion": null
+        },
+        {
+            "id": "4",
+            "question": "¿Tiene usted hij@(s)?",
+            "answers": [
+                { "text": "Si", "value": "true"},
+                { "text": "No", "value": "false"}
+            ],
+            "range": "1",
+            "parentQuestion": null
+        },
+        {
+            "id": "5",
+            "question": "Número de hij@(s)",
+            "answers": [
+                { "text": "Numero", "value": "true"}
+            ],
+            "range": "2",
+            "parentQuestion": "4"
+        },
+        {
+            "id": "6",
+            "question": "Estimación de días cotizados en toda la vida laboral",
+            "answers": [
+                { "text": "Numero", "value": "true"}
+            ],
+            "range": "1",
+            "parentQuestion": null
+        },
+        {
+            "id": "7",
+            "question": "Salario bruto (EUR por mes)",
+            "answers": [
+                { "text": "Numero", "value": "true"}
+            ],
+            "range": "1",
+            "parentQuestion": null
+        }
+    ],
+    "IMV": [
+        {
+            "id": "1",
+            "question": "Indique su fecha de nacimiento:",
+            "answers": [
+                { "text": "Fecha", "value": "true"}
+            ],
+            "range": "1",
+            "parentQuestion": null
+        },
+        {
+            "id": "2",
+            "question": "Has vivido de forma independiente en los últimos 2 años:",
+            "answers": [
+                { "text": "NO", "value": "true"},
+                { "text": "SI", "value": "true"}
+            ],
+            "range": "2",
+            "parentQuestion": "1"
+        }
+    ]
+}
