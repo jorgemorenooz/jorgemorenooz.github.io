@@ -14,10 +14,62 @@
 <body>
 
   <nav class="nav">
-    <ul class="list">
-      <li class="list-item">IMV</li>
-      <li class="list-item">Prestación por nacimiento y cuidado de menor</li>
-    </ul>
+
+    <img src="./assets/icons/menu.svg" alt="Menu" class="menu-button" onclick="displayMenu()">
+    
+    <div class="sub-menu-wrap" id="subMenu">
+      <ul class="list">
+
+        <li class="list-item">
+          <button class="button-desplegable">Test Completo</button>
+        </li>
+        <li class="list-item list-item--click">
+          <div class="list-button list-button--click">
+            <a href="#" class="nav-link">Autónomos</a>
+            <img src="./assets/icons/arrow-right.svg" class="list-arrow">
+          </div>
+
+          <ul class="list-show">
+            
+          </ul>
+        </li>
+
+        <li class="list-item list-item--click">
+          <div class="list-button list-button--click">
+            <a href="#" class="nav-link">Discapacidad</a>
+            <img src="./assets/icons/arrow-right.svg" class="list-arrow">
+          </div>
+
+          <ul class="list-show">
+            <li class="list-inside">
+              <a href="#" class="nav-link nav-link--inside">---</a>
+            </li>
+            <li class="list-inside">
+              <a href="#" class="nav-link nav-link--inside">---</a>
+            </li>
+          </ul>
+        </li>
+
+        <li class="list-item list-item--click">
+          <div class="list-button list-button--click">
+            <a href="#" class="nav-link">Individuos</a>
+            <img src="./assets/icons/arrow-right.svg" class="list-arrow">
+          </div>
+
+          <ul class="list-show">
+            <li class="list-inside">
+              <a href="#" class="nav-link nav-link--inside">IMV</a>
+            </li>
+            <li class="list-inside">
+              <a href="#" class="nav-link nav-link--inside">Prestación por nacimiento y cuidado de menor</a>
+            </li>
+            <li class="list-inside">
+              <a href="#" class="nav-link nav-link--inside">Prestación contributiva</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
   </nav>
 
   <div class="app">
@@ -29,6 +81,7 @@
     </div>
   </div>
 
+  <script src="./assets/js/list-elements.js"></script>
 </body>
 
 </html>

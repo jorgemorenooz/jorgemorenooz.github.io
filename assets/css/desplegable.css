@@ -3,14 +3,32 @@
     width: 300px;
 }
 
+.nav-link{
+    color: #001e4d;
+    display: block;
+    padding: 15px 0;
+    text-decoration: none;
+}
+
+.nav-link--inside{
+    border-radius: 6px;
+    padding-left: 20px;
+    margin-right: 5px;
+}
+
+.nav-link--inside:hover{
+    background: #f6f8fa;
+}
+
 .list{
     width: 100%;
-    height: 100vh;
+    height: 0;
     display: flex;
     justify-content: center;
     flex-direction: column;
     border-radius: 0 16px 16px 0;
     background: #fff;
+    transition: height 1.5s;
 }
 
 .list-item{
@@ -19,4 +37,72 @@
     text-align: center;
     overflow: hidden;
     padding: 0 8px 0 8px;
+}
+
+.list-item--click{
+    cursor: pointer;
+}
+
+.arrow .list-arrow{
+    transform: rotate(90deg);
+}
+
+.list-arrow{
+    transition: transform .3s;
+}
+
+.list-button{
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    width: 70%;
+    margin: 0 auto;
+}
+
+.list-show{
+    width: 80%;
+    margin-left: auto;
+    border-left: 2px solid #001e4d;
+    list-style: none;
+    transition: height .4s;
+    height: 0;
+}
+
+.menu-button{
+    position: absolute;
+    top: 1%;
+    left: 1%;
+    border: 2px solid rgb(165, 165, 165);
+    background: #fff;
+    width: 25px;
+    height: auto;
+}
+
+.menu-button:hover{
+    cursor: pointer;
+    background: #f6f8fa;
+    width: 30px;
+}
+
+.sub-menu-wrap{
+    max-height: 0px;
+    overflow: hidden;
+    transition: max-height 1.5s;
+}
+
+.open-menu{
+    max-height: 1000px;
+}
+
+.open-list{
+    height: 100vh;
+}
+
+.button-desplegable{
+    background-color: #6ea3f7;
+    width: 200px;
+    height: 30px;
+    border-radius: 10px;
+    color: #fff;
+    margin-bottom: 40px;
 }
