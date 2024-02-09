@@ -111,10 +111,28 @@ function handleNextButton() {
         if (currentQuestionIndex < questions.length) {
             var currentRange = parseInt(currentQuestion.range);
 
-            //LOgica....
-            //....
-            //....
-            
+            // Lógica para determinar la siguiente pregunta
+            let nextQuestionIndex = currentQuestionIndex;
+            while (nextQuestionIndex < questions.length) {
+                const nextQuestion = questions[nextQuestionIndex];
+                const nextRange = parseInt(nextQuestion.range);
+
+                if (nextRange === currentRange + 1) {
+                    // Si el valor actual es true y la siguiente pregunta tiene el rango siguiente, mostramos la siguiente pregunta
+                    if (value === "true") {
+                        currentQuestionIndex = nextQuestionIndex;
+                        break;
+                    } else if (value === "false") {
+                        // Si el valor actual es false, buscamos la siguiente pregunta de rango X
+                        if (nextRange === currentRange) {
+                            currentQuestionIndex = nextQuestionIndex;
+                            break;
+                        }
+                    }
+                }
+                nextQuestionIndex++;
+            }
+
             showQuestion();
         } else {
             showResult(true);

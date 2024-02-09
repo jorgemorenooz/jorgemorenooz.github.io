@@ -76,5 +76,24 @@
             "answers": null,
             "condition" : null
         }
+    ],
+    "IMV": [
+        {
+            "range": "1",
+            "question": "Indique su fecha de nacimiento",
+            "input": "date",
+            "answers": null,
+            "condition" : "value > 18"
+        },
+        {
+            "range": "1",
+            "question": "¿Independiente?",
+            "input": "button",
+            "answers": [
+                { "text": "Si", "value": "true"},
+                { "text": "No", "value": "false"}
+            ],
+            "condition" : null
+        }
     ]
 }
