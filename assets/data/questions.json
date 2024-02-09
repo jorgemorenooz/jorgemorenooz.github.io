@@ -1,0 +1,80 @@
+{
+    "Prestación por nacimiento y cuidado de menor": [
+        {
+            "range": "1",
+            "question": "¿Cobra alguna ayuda de manera habitual?",
+            "input": "button",
+            "answers": [
+                { "text": "Si", "value": "true"},
+                { "text": "No", "value": "false"}
+            ],
+            "condition" : null
+        },
+        {
+            "range": "2",
+            "question": "Indique si recibe alguna de las ayudas siguiente:",
+            "input": "button",
+            "answers": [
+                { "text": "Prestación por desempleo", "value": "true"},
+                { "text": "ERTE", "value": "true"},
+                { "text": "Ninguna", "value": "false"}
+            ],
+            "condition" : "value == false"
+        },
+        {
+            "range": "1",
+            "question": "Indique su fecha de nacimiento",
+            "input": "date",
+            "answers": null,
+            "condition" : "value > 18"
+        },
+        {
+            "range": "1",
+            "question": "¿Tiene usted hij@(s)?",
+            "input": "button",
+            "answers": [
+                { "text": "Si", "value": "true"},
+                { "text": "No", "value": "false"}
+            ],
+            "condition" : null
+        },
+        {
+            "range": "2",
+            "question": "Número de hij@(s)",
+            "input": "number",
+            "answers": null,
+            "condition" : null
+        },
+        {
+            "range": "3",
+            "question": "Fecha de Nacimiento Hijo/a",
+            "input": "date",
+            "answers": null
+        },
+        {
+            "range": "1",
+            "question": "Indique cuál de las siguientes opciones se adapta mejor a su situación laboral",
+            "input": "button",
+            "answers": [
+                { "text": "Autónomo", "value": "true"},
+                { "text": "En situación legal de desempleo", "value": "true"},
+                { "text": "Trabajando y dado de alta en la seguridad social", "value": "false"}
+            ],
+            "condition" : "value == false"
+        },
+        {
+            "range": "1",
+            "question": "Estimación de días cotizados en toda la vida laboral",
+            "input": "number",
+            "answers": null,
+            "condition" : "(edad_years < 21) || ((21 < edad_years < 26) && (value > 180)) || ((edad_years > 26) && (value > 360)) || !((21 < edad_years < 26) && value < 180)) || !((edad_years > 26) && (value<360))"
+        },
+        {
+            "range": "1",
+            "question": "Salario bruto (EUR por mes)",
+            "input": "number",
+            "answers": null,
+            "condition" : null
+        }
+    ]
+}
