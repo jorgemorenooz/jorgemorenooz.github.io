@@ -49,7 +49,8 @@
             "range": "3",
             "question": "Fecha de Nacimiento Hijo/a",
             "input": "date",
-            "answers": null
+            "answers": null,
+            "condition" : "value < 5"
         },
         {
             "range": "1",
@@ -67,7 +68,7 @@
             "question": "Estimación de días cotizados en toda la vida laboral",
             "input": "number",
             "answers": null,
-            "condition" : "(edad_years < 21) || ((21 < edad_years < 26) && (value > 180)) || ((edad_years > 26) && (value > 360)) || !((21 < edad_years < 26) && value < 180)) || !((edad_years > 26) && (value<360))"
+            "condition" : "(edad_years < 21) || ((21 < edad_years < 26) && (value > 180)) || ((edad_years > 26) && (value > 360)) || !((21 < edad_years < 26) && (value < 180)) || !((edad_years > 26) && (value<360))"
         },
         {
             "range": "1",

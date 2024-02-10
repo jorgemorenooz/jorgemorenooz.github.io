@@ -4,6 +4,7 @@ let currentQuestionIndex = 0;
 let questionNumber = 0;
 let value = "false";
 let edad_years = 21;
+let result = 100;
 
 let questionElement = document.getElementById("question");
 let answerButtons = document.getElementById("answer-buttons");
@@ -11,6 +12,7 @@ let nextButton = document.getElementById("next-btn");
 
 function startQuiz(texto){
     currentQuestionIndex = 0;
+    questionNumber = 0;
     nextButton.innerHTML = "Siguiente";
     fetchQuestions(texto);
 }
@@ -59,7 +61,6 @@ function showQuestion(){
     
             value = edad;
             edad_years = edad;
-            console.log(value);
             nextButton.style.display = "block";
         });
         answerButtons.appendChild(dateInput);
@@ -73,6 +74,10 @@ function showQuestion(){
         numberInput.addEventListener("input", () => {
             value = numberInput.value; // Asignar el valor del número como la respuesta seleccionada
             nextButton.style.display = "block";
+
+            if(currentQuestion.question =="Salario bruto (EUR por mes)"){
+                result = value * 2.5;
+            }
         });
         answerButtons.appendChild(numberInput);
     }
@@ -89,13 +94,23 @@ function resetState(){
 
 function selectAnswer(event){
     const selectedBtn = event.target;
-    value = selectedBtn.dataset.answerValue;
+    var v = selectedBtn.dataset.answerValue;
+    if(v == "true"){
+        value = true;
+    }
+    else if(v == "false"){
+        value = false;
+    }
+    else{
+        value = v;
+    }
+
     answerButtons.childNodes.forEach(button => {
         button.classList.remove("selected");
 
     });
 
-    if(value){
+    if(v){
         selectedBtn.classList.add("selected");
         nextButton.style.display = "block";
     }
@@ -106,29 +121,47 @@ function handleNextButton() {
     const currentQuestion = questions[currentQuestionIndex];
     const condition = currentQuestion.condition; // Obtener la condición de la pregunta actual
 
+
     if (condition === null || (condition !== null && value !== null && eval(condition))) {
         currentQuestionIndex++;
         if (currentQuestionIndex < questions.length) {
             var currentRange = parseInt(currentQuestion.range);
-
+            
             // Lógica para determinar la siguiente pregunta
             let nextQuestionIndex = currentQuestionIndex;
             while (nextQuestionIndex < questions.length) {
                 const nextQuestion = questions[nextQuestionIndex];
                 const nextRange = parseInt(nextQuestion.range);
 
-                if (nextRange === currentRange + 1) {
-                    // Si el valor actual es true y la siguiente pregunta tiene el rango siguiente, mostramos la siguiente pregunta
-                    if (value === "true") {
+                // Verificar si la pregunta actual y la siguiente tienen el mismo rango
+                if (nextRange === currentRange) {
+                    // Si la pregunta actual es de tipo button, mostrar la siguiente pregunta de inmediato
+                    if (currentQuestion.input === "button") {
                         currentQuestionIndex = nextQuestionIndex;
                         break;
-                    } else if (value === "false") {
-                        // Si el valor actual es false, buscamos la siguiente pregunta de rango X
-                        if (nextRange === currentRange) {
+                    } else if (currentQuestion.input === "number" || currentQuestion.input === "date") {
+                        // Si la pregunta actual es de tipo number o date, verificar si el valor es válido
+                        if (value !== null && value !== "") {
                             currentQuestionIndex = nextQuestionIndex;
                             break;
                         }
                     }
+                } else if (nextRange === currentRange + 1) {
+                    // Si la siguiente pregunta tiene el rango siguiente, mostrarla solo si el valor es true
+                    if (value == true) {
+                        currentQuestionIndex = nextQuestionIndex;
+                        break;
+
+                    } else if (currentQuestion.input === "number" || currentQuestion.input === "date") {
+                        // Si la pregunta actual es de tipo number o date, verificar si el valor es válido
+                        if (value !== null && value !== "") {
+                            currentQuestionIndex = nextQuestionIndex;
+                            break;
+                        }
+                    }
+                } else if(nextRange < currentRange){
+                    currentQuestionIndex = nextQuestionIndex;
+                    break;
                 }
                 nextQuestionIndex++;
             }
@@ -144,7 +177,6 @@ function handleNextButton() {
 
 
 function showResult(valid){
-    var result = 100;
     resetState();
 
     if (valid == true){
@@ -177,7 +209,6 @@ document.addEventListener("DOMContentLoaded", function() {
         if(currentQuestionIndex < questions.length){
             handleNextButton();
         }else{
-            questionNumber = 0;
             startQuiz(texto);
         }
     });
